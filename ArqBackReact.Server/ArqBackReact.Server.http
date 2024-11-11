@@ -1,0 +1,6 @@
+@ArqBackReact.Server_HostAddress = http://localhost:5248
+
+GET {{ArqBackReact.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

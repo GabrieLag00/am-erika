@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArqBackReact.Server", "ArqBackReact.Server\ArqBackReact.Server.csproj", "{1C2C2C98-CDDE-44B3-9A8B-983D74E1E027}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "arqbackreact.client", "arqbackreact.client\arqbackreact.client.esproj", "{2F8E04AB-2D34-484B-8455-0CE5007770C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C2C2C98-CDDE-44B3-9A8B-983D74E1E027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C2C2C98-CDDE-44B3-9A8B-983D74E1E027}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C2C2C98-CDDE-44B3-9A8B-983D74E1E027}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C2C2C98-CDDE-44B3-9A8B-983D74E1E027}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F8E04AB-2D34-484B-8455-0CE5007770C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F8E04AB-2D34-484B-8455-0CE5007770C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F8E04AB-2D34-484B-8455-0CE5007770C3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{2F8E04AB-2D34-484B-8455-0CE5007770C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F8E04AB-2D34-484B-8455-0CE5007770C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F8E04AB-2D34-484B-8455-0CE5007770C3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A4C4DD7-73C7-4A09-AE9D-147DF6BC2A39}
+	EndGlobalSection
+EndGlobal
