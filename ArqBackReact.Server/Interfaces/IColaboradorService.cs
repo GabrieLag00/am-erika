@@ -12,5 +12,7 @@ namespace ArqBackReact.Server.Services
         Task<Colaborador> AddColaboradorAsync(ColaboradorRequest colaboradorRequest);
 
         Task<bool> DeleteColaboradorAsync(int idColaborador);
+
+        Task<Colaborador> UpdateColaboradorAsync(int idColaborador, ColaboradorRequest colaboradorRequest);
     }
 }

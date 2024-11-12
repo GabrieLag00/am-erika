@@ -83,10 +83,44 @@ namespace ArqBackReact.Server.Controllers
             return CreatedAtAction(nameof(AddColaborador), new { id = nuevoColaborador.IdColaborador }, response);
         }
 
-        [HttpDelete("{id}")] 
-        public async Task<IActionResult> DeleteColaborador(int id) 
-        { 
-            var result = await _colaboradorService.DeleteColaboradorAsync(id); if (!result) { return NotFound(); } return NoContent(); 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteColaborador(int id)
+        {
+            var result = await _colaboradorService.DeleteColaboradorAsync(id); if (!result) { return NotFound(); }
+            return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Colaborador>> UpdateColaborador(int id, [FromBody] ColaboradorRequest colaboradorRequest)
+        {
+            var actualizadoColaborador = await _colaboradorService.UpdateColaboradorAsync(id, colaboradorRequest);
+            if (actualizadoColaborador == null)
+            {
+                return NotFound();
+            }
+            var response = new
+            {
+                actualizadoColaborador.IdColaborador,
+                actualizadoColaborador.Nombre,
+                actualizadoColaborador.Edad,
+                actualizadoColaborador.Birthday,
+                actualizadoColaborador.IsProfesor,
+                actualizadoColaborador.FechaCreacion,
+                Profesor = actualizadoColaborador.IsProfesor ? actualizadoColaborador.Profesor != null ? new
+                {
+                    actualizadoColaborador.Profesor.IdProfesor,
+                    actualizadoColaborador.Profesor.Correo,
+                    actualizadoColaborador.Profesor.Departamento
+                } : null : null,
+                Administrativo = !actualizadoColaborador.IsProfesor ? actualizadoColaborador.Administrativo != null ? new
+                {
+                    actualizadoColaborador.Administrativo.IdAdministrativo,
+                    actualizadoColaborador.Administrativo.Correo,
+                    actualizadoColaborador.Administrativo.Puesto,
+                    actualizadoColaborador.Administrativo.Nomina
+                } : null : null
+            };
+            return Ok(response);
         }
     }
-}
+}  

@@ -90,6 +90,57 @@ namespace ArqBackReact.Server.Services
             _context.Colaboradores.Remove(colaborador); await _context.SaveChangesAsync(); return true;
 
         }
-    }
-}
 
+        public async Task<Colaborador> UpdateColaboradorAsync(int id, ColaboradorRequest colaboradorRequest)
+        {
+            var colaborador = await _context.Colaboradores
+                .Include(c => c.Profesor)
+                .Include(c => c.Administrativo)
+                .FirstOrDefaultAsync(c => c.IdColaborador == id);
+            if (colaborador == null)
+            {
+                return null;
+            }
+            colaborador.Nombre = colaboradorRequest.Nombre;
+            colaborador.Edad = colaboradorRequest.Edad;
+            colaborador.Birthday = colaboradorRequest.Birthday;
+            if (colaborador.IsProfesor != colaboradorRequest.IsProfesor)
+            {
+                if (colaborador.IsProfesor)
+                {
+                    if (colaborador.Profesor != null)
+                    {
+                        _context.Profesores.Remove(colaborador.Profesor);
+                    }
+                    var administrativo = new Administrativo
+                    {
+                        FKColaborador = colaborador.IdColaborador,
+                        Correo = colaboradorRequest.Correo,
+                        Puesto = colaboradorRequest.Puesto,
+                        Nomina = colaboradorRequest.Nomina.Value
+                    };
+                    _context.Administrativos.Add(administrativo);
+                }
+                else
+                {
+                    if (colaborador.Administrativo != null)
+                    {
+                        _context.Administrativos.Remove(colaborador.Administrativo);
+                    }
+                    var profesor = new Profesor
+                    {
+                        FKColaborador = colaborador.IdColaborador,
+                        Correo = colaboradorRequest.Correo,
+                        Departamento = colaboradorRequest.Departamento
+                    };
+                    _context.Profesores.Add(profesor);
+                }
+                colaborador.IsProfesor = colaboradorRequest.IsProfesor;
+            }
+            await _context.SaveChangesAsync();
+            return colaborador;
+        }
+
+    }
+
+}
